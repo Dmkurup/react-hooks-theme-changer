@@ -1,0 +1,16 @@
+.main-section{
+    padding:10px;
+}
+
+header{
+    padding:10px 0 20px 0;
+}
+
+.theme-dropdown{
+    max-width:150px;
+    margin:auto;
+}
+
+.content p {
+    padding:10px;
+}

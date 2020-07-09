@@ -1,24 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React,{useState} from 'react';
+import Main from './components/Main';
+import Header from './components/Header'
+import themes from './utils/themes'
 
-function App() {
+const App=() =>{
+
+const [theme,setTheme] =useState(" ");
+
+const handleChange= e =>{ //once the option changes, set the state 
+  setTheme(themes[e.value]);
+}
+
+//use the state theme value to be applied to the document
+
+const themePicker=node=>{
+  if(node){
+    theme && Object.keys(theme).forEach(attr=>{
+      node.style.setProperty(attr,theme[attr],'important'); //set each attribute in that theme obj to the selected node
+
+      if(attr ==='background-color'){
+        document.body.style.background=theme[attr]; //color entire page
+      }
+    })
+  }
+}
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div ref={themePicker}className="main-section">
+      <Header handleChange={handleChange}/>
+      <Main/>
     </div>
   );
 }
